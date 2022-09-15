@@ -33,13 +33,16 @@ public class PrimaryController implements Initializable{
 
     public void cadastrar() {
         var contas = carregarInfos();
-        if(contas == null){erro("as informações estão erradas");}
+        if(contas == null){erro("as informações estão erradas");
+        limparFormulario();
+        } else{
         Lista.add(contas);
         System.out.println(Lista);
         limparFormulario();
        
         listViewFinancas.getItems().add(contas);
         atualizarLista();
+        }
     }
 
     public Financas carregarInfos(){
@@ -49,6 +52,7 @@ public class PrimaryController implements Initializable{
             if (valor<=0){throw new IOException("");}
             int     data   = Integer.valueOf(textFieldDataDeVencimento.getText());
             String categoria =choiceBoxCategoriaConta.getValue();
+            if(categoria == null){{throw new IOException("");}}
             Financas financas = new Financas(nome, valor, data, categoria, false);
             return financas;
         }catch(IOException e){
@@ -86,6 +90,7 @@ public class PrimaryController implements Initializable{
         textFieldNomeConta.setText("");
         textFieldValorConta.setText("");
         textFieldDataDeVencimento.setText("");
+        choiceBoxCategoriaConta.setValue(null);
     }
 
 }
