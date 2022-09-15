@@ -48,11 +48,12 @@ public class PrimaryController implements Initializable{
     public Financas carregarInfos(){
         try{
             String  nome = textFieldNomeConta.getText();
+            if(nome == "")throw new IOException("");
             double  valor = Double.valueOf(textFieldValorConta.getText());
-            if (valor<=0){throw new IOException("");}
+            if (valor<=0)throw new IOException("");
             int     data   = Integer.valueOf(textFieldDataDeVencimento.getText());
             String categoria =choiceBoxCategoriaConta.getValue();
-            if(categoria == null){{throw new IOException("");}}
+            if(categoria == null)throw new IOException("");
             Financas financas = new Financas(nome, valor, data, categoria, false);
             return financas;
         }catch(IOException e){
