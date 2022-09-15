@@ -1,5 +1,6 @@
 package br.com.fiap.controlefinanceiro;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class PrimaryController implements Initializable{
 
     public void cadastrar() {
         var contas = carregarInfos();
+        if(contas == null){erro("as informações estão erradas");}
         Lista.add(contas);
         System.out.println(Lista);
         limparFormulario();
@@ -40,13 +42,18 @@ public class PrimaryController implements Initializable{
         atualizarLista();
     }
 
-    public Financas carregarInfos() {
-        String  nome = textFieldNomeConta.getText();
-        double  valor = Double.valueOf(textFieldValorConta.getText());
-        int     data   = Integer.valueOf(textFieldDataDeVencimento.getText());
-        String categoria =choiceBoxCategoriaConta.getValue();
-        Financas financas = new Financas(nome, valor, data, categoria, false);
-        return financas;
+    public Financas carregarInfos(){
+        try{
+            String  nome = textFieldNomeConta.getText();
+            double  valor = Double.valueOf(textFieldValorConta.getText());
+            if (valor<=0){throw new IOException("");}
+            int     data   = Integer.valueOf(textFieldDataDeVencimento.getText());
+            String categoria =choiceBoxCategoriaConta.getValue();
+            Financas financas = new Financas(nome, valor, data, categoria, false);
+            return financas;
+        }catch(IOException e){
+            return null;
+        }
     }
 
     public void erro(String mensagem) {
