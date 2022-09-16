@@ -37,7 +37,7 @@ public class PrimaryController implements Initializable{
         limparFormulario();
         } else{
         Lista.add(contas);
-        System.out.println(Lista);
+        System.out.println(contas);
         limparFormulario();
        
         listViewFinancas.getItems().add(contas);
@@ -68,7 +68,7 @@ public class PrimaryController implements Initializable{
     }
 
     public void ordenarCategoria() {
-       // Lista.sort((o1,o2) -> String.(o1.getCategoriaConta(), o2.getCategoriaConta()));
+        Lista.sort((o1,o2) -> o1.getCategoriaConta().compareTo(o1.getCategoriaConta()));
         atualizarLista();
     }
 
