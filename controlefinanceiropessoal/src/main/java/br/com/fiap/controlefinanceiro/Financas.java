@@ -1,6 +1,6 @@
 package br.com.fiap.controlefinanceiro;
 
-public class Financas implements Comparable{
+public class Financas{
     
     private String nomeConta;
     private double valorConta;
@@ -57,7 +57,8 @@ public class Financas implements Comparable{
     }
 
     @Override
-    public int compareTo(Object o) {
-        return 0;
+    public String toString() {
+        return "Categoria: " + categoriaConta + ", contaPaga: " + contaPaga + ", dataPagamentoConta: " + dataPagamentoConta + ", nomeConta: " + nomeConta + ", valorConta: " + valorConta ;
     }
+
 }

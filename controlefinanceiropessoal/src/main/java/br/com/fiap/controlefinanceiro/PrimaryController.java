@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
@@ -21,8 +22,12 @@ public class PrimaryController implements Initializable{
     @FXML private TextField textFieldDataDeVencimento;
     @FXML private ChoiceBox<String> choiceBoxCategoriaConta;
     @FXML private ListView<Financas> listViewFinancas;  
+    @FXML private CheckBox checkbox;
+    @FXML private ListView<Financas> listViewPagar;
+    @FXML private TextField textFieldPagar;
 
     private List<Financas> Lista = new ArrayList<>();
+    private List<Financas> ListaNPago = new ArrayList<>();
   
     String[] listaCategorias =  {"Salário de funcionários","Contas de água e de luz","Empréstimos"};
     
@@ -32,34 +37,22 @@ public class PrimaryController implements Initializable{
     }
 
     public void cadastrar() {
-        var contas = carregarInfos();
-        if(contas == null){erro("as informações estão erradas");
-        limparFormulario();
-        } else{
-        Lista.add(contas);
-        System.out.println(contas);
+        String  nome = textFieldNomeConta.getText();
+        double  valor = Double.valueOf(textFieldValorConta.getText());
+        int     data   = Integer.valueOf(textFieldDataDeVencimento.getText());
+        String categoria =choiceBoxCategoriaConta.getValue();
+        boolean pago = checkbox.isSelected();
+        Financas financas = new Financas(nome, valor, data, categoria, pago);
+        if(pago == false){
+            ListaNPago.add(financas);
+        }
+
+        Lista.add(financas);
+
         limparFormulario();
        
-        listViewFinancas.getItems().add(contas);
         atualizarLista();
         }
-    }
-
-    public Financas carregarInfos(){
-        try{
-            String  nome = textFieldNomeConta.getText();
-            if(nome == "")throw new IOException("");
-            double  valor = Double.valueOf(textFieldValorConta.getText());
-            if (valor<=0)throw new IOException("");
-            int     data   = Integer.valueOf(textFieldDataDeVencimento.getText());
-            String categoria =choiceBoxCategoriaConta.getValue();
-            if(categoria == null)throw new IOException("");
-            Financas financas = new Financas(nome, valor, data, categoria, false);
-            return financas;
-        }catch(IOException e){
-            return null;
-        }
-    }
 
     public void erro(String mensagem) {
         Alert alert = new Alert(AlertType.ERROR);
@@ -85,6 +78,8 @@ public class PrimaryController implements Initializable{
     private void atualizarLista(){
         listViewFinancas.getItems().clear();
         listViewFinancas.getItems().addAll(Lista);
+        listViewPagar.getItems().clear();
+        listViewPagar.getItems().addAll(ListaNPago);
     }
 
     private void limparFormulario(){
@@ -92,6 +87,14 @@ public class PrimaryController implements Initializable{
         textFieldValorConta.setText("");
         textFieldDataDeVencimento.setText("");
         choiceBoxCategoriaConta.setValue(null);
+        checkbox.setSelected(false);
     }
-
+    public void pagar(){
+        int contaPagar = Integer.valueOf(textFieldPagar.getText());
+        ListaNPago.remove(contaPagar -1);
+        Financas pago =ListaNPago.get(contaPagar);
+        pago.setContaPaga(true);
+        Lista.add(pago);
+        atualizarLista();
+     }
 }
