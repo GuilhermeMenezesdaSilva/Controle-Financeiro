@@ -37,21 +37,26 @@ public class PrimaryController implements Initializable{
     }
 
     public void cadastrar() {
-        String  nome = textFieldNomeConta.getText();
-        double  valor = Double.valueOf(textFieldValorConta.getText());
-        int     data   = Integer.valueOf(textFieldDataDeVencimento.getText());
-        String categoria =choiceBoxCategoriaConta.getValue();
-        boolean pago = checkbox.isSelected();
-        Financas financas = new Financas(nome, valor, data, categoria, pago);
-        if(pago == false){
-            ListaNPago.add(financas);
+        try {
+            String  nome = textFieldNomeConta.getText();
+            double  valor = Double.valueOf(textFieldValorConta.getText());
+            int     data   = Integer.valueOf(textFieldDataDeVencimento.getText());
+            String categoria =choiceBoxCategoriaConta.getValue();
+            boolean pago = checkbox.isSelected();
+            Financas financas = new Financas(nome, valor, data, categoria, pago);
+            if(pago == false){
+                ListaNPago.add(financas);
+            }
+    
+            Lista.add(financas);
+    
+            limparFormulario();
+           
+            atualizarLista();
+        } catch (Exception e) {
+            erro("Verifique as informações");
         }
 
-        Lista.add(financas);
-
-        limparFormulario();
-       
-        atualizarLista();
         }
 
     public void erro(String mensagem) {
@@ -92,9 +97,5 @@ public class PrimaryController implements Initializable{
     public void pagar(){
         int contaPagar = Integer.valueOf(textFieldPagar.getText());
         ListaNPago.remove(contaPagar -1);
-        Financas pago =ListaNPago.get(contaPagar);
-        pago.setContaPaga(true);
-        Lista.add(pago);
-        atualizarLista();
      }
 }
