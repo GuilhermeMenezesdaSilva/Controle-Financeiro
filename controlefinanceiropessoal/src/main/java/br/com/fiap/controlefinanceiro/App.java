@@ -21,7 +21,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
         stage.setTitle("Sexo de ladinho");
-        stage.getIcons().add(new Image("file:src/main/resources/br/com/fiap/controlefinanceiro/icons8-counter-strike-global-offensive-32.png"));
+        stage.getIcons().add(new Image("file:src/main/resources/br/com/fiap/controlefinanceiro/money-bill-solid.svg"));
         
         stage.show();
     }
