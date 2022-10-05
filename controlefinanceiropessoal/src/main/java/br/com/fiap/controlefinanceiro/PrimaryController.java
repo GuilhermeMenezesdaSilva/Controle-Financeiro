@@ -1,6 +1,5 @@
 package br.com.fiap.controlefinanceiro;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,6 @@ public class PrimaryController implements Initializable {
     private TextField textFieldPagar;
 
     private List<Financas> Lista = new ArrayList<>();
-    private List<Financas> ListaNPago = new ArrayList<>();
     int id = 0;
 
     String[] listaCategorias = { "Salário de funcionários", "Contas de água e de luz", "Empréstimos" };
