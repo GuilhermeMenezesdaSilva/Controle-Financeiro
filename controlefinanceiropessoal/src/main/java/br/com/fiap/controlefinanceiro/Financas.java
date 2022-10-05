@@ -2,18 +2,28 @@ package br.com.fiap.controlefinanceiro;
 
 public class Financas{
     
+    private int id;
     private String nomeConta;
     private double valorConta;
     private int dataPagamentoConta;
     private String categoriaConta;
     private boolean contaPaga;
     
-    public Financas(String nomeConta, double valorConta, int dataPagamentoConta, String categoriaConta, boolean contaPaga) {
+    public Financas(int id,String nomeConta, double valorConta, int dataPagamentoConta, String categoriaConta, boolean contaPaga) {
         this.nomeConta = nomeConta;
         this.valorConta = valorConta;
         this.dataPagamentoConta = dataPagamentoConta;
         this.categoriaConta = categoriaConta;
         this.contaPaga = contaPaga;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNomeConta() {
@@ -58,7 +68,8 @@ public class Financas{
 
     @Override
     public String toString() {
-        return "Categoria: " + categoriaConta + ", contaPaga: " + contaPaga + ", dataPagamentoConta: " + dataPagamentoConta + ", nomeConta: " + nomeConta + ", valorConta: " + valorConta ;
+        return "Categoria: " + categoriaConta + ", contaPaga: " + contaPaga + ", dataPagamentoConta: " + dataPagamentoConta + ", nomeConta: " + nomeConta + ", valorConta: " + valorConta + "id: " + id;
     }
+    
 
 }

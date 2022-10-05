@@ -54,48 +54,46 @@
       <Tab text="Verificar conta">
          <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
-               <center>
-                  <ListView fx:id="listViewFinancas" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-               </center>
                <top>
                   <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="625.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#ordenarCategoria" text="Ordernar por categoria">
+                        <Button mnemonicParsing="false" onAction="#ordenarCategoria" prefHeight="25.0" prefWidth="154.0" text="Ordernar por categoria">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#ordenarData" text="Ordernar por data">
+                        <Button mnemonicParsing="false" onAction="#ordenarData" prefHeight="25.0" prefWidth="128.0" text="Ordernar por data">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#ordenarValor" text="Ordernar por preço">
+                        <Button mnemonicParsing="false" onAction="#ordenarValor" prefHeight="25.0" prefWidth="138.0" text="Ordernar por preço">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
                         </Button>
+                        <Button layoutX="128.0" layoutY="16.0" mnemonicParsing="false" onAction="#mostrarPagar" prefHeight="25.0" prefWidth="117.0" text="Mostrar pagos">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#pagar" prefHeight="25.0" prefWidth="73.0" text="Pagar">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </Button>
+                        <TextField fx:id="textFieldPagar" prefHeight="25.0" prefWidth="84.0" promptText="id pago">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </TextField>
                      </children>
                   </HBox>
                </top>
+               <center>
+                  <ListView fx:id="listViewFinancas" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </center>
             </BorderPane>
          </content></Tab>
-      <Tab text="Contas a pagar">
-         <content>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
-               <center>
-                  <ListView fx:id="listViewPagar" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-               </center>
-               <top>
-                  <HBox alignment="CENTER" prefHeight="44.0" prefWidth="625.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#pagar" text="Pago" />
-                        <TextField fx:id="textFieldPagar" />
-                     </children>
-                  </HBox>
-               </top>
-            </BorderPane>
-         </content>
-      </Tab>
    </tabs>
 </TabPane>
